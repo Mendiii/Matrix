@@ -1,0 +1,31 @@
+﻿@model List<MatrixProj.Models.ItemModel>
+
+@{
+    ViewBag.Title = "Display Bookmarks";
+}
+
+
+
+<div class="text-center">
+
+    <h2>Bookmarks List</h2>
+
+    <div class="center special-div">
+        <input id="SearchButtonDisplay" class="btn" type="button" value="Back To Search" onclick="@("window.location.href='" + @Url.Action("SearchingRepositories", "Home") + "'");" />
+    </div>
+    <hr />
+    @foreach (var m in Model)
+    {
+        <div class="div-to-display back-color">
+            <img class="pic" src="@m.owner.avatar_url" />
+            <div>
+                <h4>@m.name</h4>
+                <h5>@m.full_name</h5>
+                <h5><a href="@m.html_url" target="_blank">Link To Repository</a></h5>
+            </div>
+        </div>
+    }
+
+</div>
+
+

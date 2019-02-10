@@ -1,0 +1,57 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Searching Repositories";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $("#searchButton").click(function () {
+                var stringToSearch = $("#inputText").val();
+                if (stringToSearch) {
+                    $("#resultFromAjaxCall").empty();
+                    $.get("https://api.github.com/search/repositories?q=" + stringToSearch + "&per_page=500", async = true, function (data) {
+                        $.each(data.items, function (i) {
+                            var containDivOpeningTag = "<div class='div-to-display'>";
+                            var Avatar = "<img class='pic' src=" + data.items[i].owner.avatar_url + "/>";
+                            var RepositoryName = "<h3>" + data.items[i].name + "</h3>";
+                            var button = "<input id=" + data.items[i].id + " class='bookmarkButton' type='button' value='bookmark' />";
+                            var containDivClosingTag = "</div>";
+                            $("#resultFromAjaxCall").append(containDivOpeningTag + Avatar + RepositoryName + button + containDivClosingTag);
+                            $("#" + data.items[i].id + "").click(function () {
+                                $.post("SaveBookmarkToSession", data.items[i]);
+                                $("#alert").show();
+                                setTimeout(function () { $("#alert").hide(); }, 1000);
+                            });
+                        })
+                    });
+                }
+                else {
+                    alert("Search box is empty!")
+                }
+            });
+        });
+    </script>
+}
+
+<div class="center special-div ">
+    <p id="alert" class="alert">Bookmark Added</p>
+</div>
+<div class="center special-div ">
+    <input id="inputText" type="text" placeholder="serach" />
+    <input id="searchButton" type="button" value="serach" />
+
+</div>
+<div class="center special-div">
+    <input id="BookmarksButtonDisplay" class="btn" type="button" value="Show Bookmarks" onclick="@("window.location.href='" + @Url.Action("DisplayBookmarks", "Home") + "'");" />
+</div>
+
+<hr />
+
+<div id="resultFromAjaxCall" class="center">
+
+</div>
+

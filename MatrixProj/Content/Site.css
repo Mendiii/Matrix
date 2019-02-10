@@ -1,0 +1,70 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.div-to-display {
+    position: relative;
+    width: 360px;
+    height: 220px;
+    border: 1px solid #73AD21;
+    background-color: whitesmoke;
+    margin: 10px;
+    padding: 20px;
+    float: left;
+}
+
+.back-color {
+    background-color: beige;
+}
+
+.pic {
+    width: 100px;
+    height: 100px;
+    border: 1px solid;
+}
+
+.bookmarkButton {
+    position: relative;
+    margin-top: 0px;
+    left: 0px;
+}
+
+.center {
+    text-align: center;
+}
+
+.special-div {
+    padding:20px;
+
+}
+
+.alert {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    background: green;
+    color: black;
+    z-index: 99999;
+}
